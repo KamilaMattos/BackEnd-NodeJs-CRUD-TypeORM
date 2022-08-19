@@ -1,5 +1,6 @@
-import { DataSource } from "typeorm";
-import "dotenv/config";
+import { DataSource } from "typeorm"
+import "dotenv/config"
+require("dotenv").config()
 
 /* Explicando código abaixo:
   * Estamos utilizando um ternário para controlar a configuração
@@ -13,6 +14,8 @@ import "dotenv/config";
     de forma correta.
 */
 
+const host = process.env.NODE_ENV === "dockerdev" ? "postgres" : "localhost"
+
 export const AppDataSource =
   process.env.NODE_ENV === "test"
     ? new DataSource({
@@ -23,7 +26,7 @@ export const AppDataSource =
       })
     : new DataSource({
         type: "postgres",
-        host: "localhost",
+        host,
         port: 5432,
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
@@ -32,4 +35,4 @@ export const AppDataSource =
         logging: true,
         entities: ["src/entities/*.ts"],
         migrations: ["src/migrations/*.ts"],
-      });
+      })
