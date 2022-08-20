@@ -1,7 +1,7 @@
 export interface ICreateUser {
   name: string
-  password: string
   email: string
+  password: string
   age: number
   created_at?: string
   updated_at?: string
@@ -16,6 +16,6 @@ export interface IUpdated {
   password?: string
   email?: string
   age?: number
-  updated_at?: string
+  updated_at?: Date
   id: string
 }

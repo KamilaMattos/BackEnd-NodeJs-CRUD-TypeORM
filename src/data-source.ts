@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { DataSource } from "typeorm"
 import "dotenv/config"
 require("dotenv").config()
@@ -14,8 +15,6 @@ require("dotenv").config()
     de forma correta.
 */
 
-const host = process.env.NODE_ENV === "dockerdev" ? "postgres" : "localhost"
-
 export const AppDataSource =
   process.env.NODE_ENV === "test"
     ? new DataSource({
@@ -26,7 +25,7 @@ export const AppDataSource =
       })
     : new DataSource({
         type: "postgres",
-        host,
+        host: process.env.POSTGRES_HOST,
         port: 5432,
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
