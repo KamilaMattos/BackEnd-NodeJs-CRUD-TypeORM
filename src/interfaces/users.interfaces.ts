@@ -11,7 +11,7 @@ export interface IUserID {
   id: string
 }
 
-export interface IUpdated {
+export interface IUserUpdate {
   name?: string
   password?: string
   email?: string
